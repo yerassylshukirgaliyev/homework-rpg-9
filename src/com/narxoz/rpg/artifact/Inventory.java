@@ -4,52 +4,45 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Container for a hero's or vault's artifact collection.
- */
 public class Inventory {
+    private List<Artifact> items = new ArrayList<>();
 
-    private final List<Artifact> artifacts;
-
-    public Inventory() {
-        this.artifacts = new ArrayList<>();
+    public void add(Artifact artifact) {
+        items.add(artifact);
     }
 
-    public Inventory(List<Artifact> artifacts) {
-        this.artifacts = artifacts == null ? new ArrayList<>() : new ArrayList<>(artifacts);
-    }
-
-    public void addArtifact(Artifact artifact) {
-        if (artifact != null) {
-            artifacts.add(artifact);
+    public void removeLast() {
+        if (!items.isEmpty()) {
+            items.remove(items.size() - 1);
         }
     }
 
-    public List<Artifact> getArtifacts() {
-        return Collections.unmodifiableList(artifacts);
+    public List<Artifact> getItems() {
+        return Collections.unmodifiableList(items);
     }
 
-    public int size() {
-        return artifacts.size();
-    }
-
-    /**
-     * Visits each artifact in order.
-     *
-     * @param visitor the visitor to apply to each artifact
-     */
     public void accept(ArtifactVisitor visitor) {
-        for (Artifact artifact : artifacts) {
-            artifact.accept(visitor);
+        for (Artifact item : items) {
+            item.accept(visitor);
         }
     }
 
-    /**
-     * Creates a shallow copy of this inventory.
-     *
-     * @return a new inventory containing the same artifact references
-     */
     public Inventory copy() {
-        return new Inventory(artifacts);
+        Inventory inventory = new Inventory();
+        for (Artifact item : items) {
+            inventory.add(item);
+        }
+        return inventory;
+    }
+
+    public String toString() {
+        String s = "";
+        for (Artifact a : items) {
+            s += a.getName() + ", ";
+        }
+        if (s.length() > 1) {
+            s = s.substring(0, s.length() - 2);
+        }
+        return s;
     }
 }

@@ -1,23 +1,18 @@
 package com.narxoz.rpg.artifact;
 
-/**
- * A protective suit, plate, or enchanted shield.
- */
 public class Armor extends Artifact {
+    private int armor;
 
-    private final int defenseBonus;
-
-    public Armor(String name, int value, int weight, int defenseBonus) {
-        super(name, value, weight);
-        this.defenseBonus = defenseBonus;
+    public Armor(String name, int level, int armor) {
+        super(name, level);
+        this.armor = armor;
     }
 
-    public int getDefenseBonus() {
-        return defenseBonus;
+    public int getArmor() {
+        return armor;
     }
 
-    @Override
     public void accept(ArtifactVisitor visitor) {
-        // TODO: call visitor.visit(this) for double dispatch.
+        visitor.visit(this);
     }
 }

@@ -1,23 +1,18 @@
 package com.narxoz.rpg.artifact;
 
-/**
- * A melee or ranged weapon found in the vault.
- */
 public class Weapon extends Artifact {
+    private int damage;
 
-    private final int attackBonus;
-
-    public Weapon(String name, int value, int weight, int attackBonus) {
-        super(name, value, weight);
-        this.attackBonus = attackBonus;
+    public Weapon(String name, int level, int damage) {
+        super(name, level);
+        this.damage = damage;
     }
 
-    public int getAttackBonus() {
-        return attackBonus;
+    public int getDamage() {
+        return damage;
     }
 
-    @Override
     public void accept(ArtifactVisitor visitor) {
-        // TODO: call visitor.visit(this) for double dispatch.
+        visitor.visit(this);
     }
 }

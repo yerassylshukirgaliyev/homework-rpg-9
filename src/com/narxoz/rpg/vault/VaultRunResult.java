@@ -1,38 +1,37 @@
 package com.narxoz.rpg.vault;
 
-/**
- * Summary of a Chronomancer's Vault run.
- */
 public class VaultRunResult {
+    private boolean trap;
+    private int price;
+    private String report;
+    private String before;
+    private String after;
 
-    private final int artifactsAppraised;
-    private final int mementosCreated;
-    private final int restoredCount;
-
-    public VaultRunResult(int artifactsAppraised, int mementosCreated, int restoredCount) {
-        this.artifactsAppraised = artifactsAppraised;
-        this.mementosCreated = mementosCreated;
-        this.restoredCount = restoredCount;
+    public VaultRunResult(boolean trap, int price, String report, String before, String after) {
+        this.trap = trap;
+        this.price = price;
+        this.report = report;
+        this.before = before;
+        this.after = after;
     }
 
-    public int getArtifactsAppraised() {
-        return artifactsAppraised;
+    public boolean isTrap() {
+        return trap;
     }
 
-    public int getMementosCreated() {
-        return mementosCreated;
+    public int getPrice() {
+        return price;
     }
 
-    public int getRestoredCount() {
-        return restoredCount;
+    public String getReport() {
+        return report;
     }
 
-    @Override
-    public String toString() {
-        return "VaultRunResult{"
-                + "artifactsAppraised=" + artifactsAppraised
-                + ", mementosCreated=" + mementosCreated
-                + ", restoredCount=" + restoredCount
-                + '}';
+    public String getBefore() {
+        return before;
+    }
+
+    public String getAfter() {
+        return after;
     }
 }
